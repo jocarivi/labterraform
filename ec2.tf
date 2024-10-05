@@ -41,7 +41,7 @@ resource "aws_instance" "web1" {
   instance_type = "t2.micro"
 
   key_name = "cloud2"
-
+  user_data = file("createDocker.sh")
   # Asignar la instancia a la primera subnet pública
   subnet_id = aws_subnet.public_subnet_1.id
 
@@ -57,11 +57,11 @@ resource "aws_instance" "web1" {
 resource "aws_instance" "web2" {
   ami           = "ami-0fff1b9a61dec8a5f"  # Cambia según tu región
   instance_type = "t2.micro"
-
-  key_name = "cloud2"
   # Asignar la instancia a la segunda subnet pública
   subnet_id = aws_subnet.public_subnet_2.id
-
+  key_name = "cloud2"
+  
+  user_data = file("createDocker.sh")
   # Asociar al grupo de seguridad creado
   vpc_security_group_ids = [aws_security_group.web_sg.id]
 
