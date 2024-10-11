@@ -61,7 +61,7 @@ resource "aws_instance" "web2" {
   subnet_id = aws_subnet.public_subnet_2.id
   key_name = "cloud2"
   
-  user_data = file("createDocker.sh")
+  user_data = file("createDocker1.sh")
   # Asociar al grupo de seguridad creado
   vpc_security_group_ids = [aws_security_group.web_sg.id]
 
@@ -77,3 +77,4 @@ output "instance_ips" {
     web2_ip = aws_instance.web2.public_ip
   }
 }
+
